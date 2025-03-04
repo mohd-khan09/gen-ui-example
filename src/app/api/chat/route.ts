@@ -1,6 +1,6 @@
 import { openai } from "@ai-sdk/openai";
 import { streamText } from "ai";
-import { tools } from "@/ai/tools";
+import { cartools } from "@/ai/cartools";
 
 export const maxDuration = 30;
 
@@ -9,10 +9,16 @@ export async function POST(req: Request) {
 
   const result = await streamText({
     model: openai("gpt-4o-mini"),
-    system: `You are a helpful assistant that can answer questions and help with tasks.
-              You can provide weather information for different locations.`,
+    system: `You are a knowledgeable car assistant that helps users with car-related queries. 
+    You can provide detailed information about different Hyundai car models, including specifications, 
+    fuel types, on-road prices, and availability. 
+
+    However, you can only provide details about * Hyundai cars*. If the user asks about any 
+    other brand, model,  politely inform them: 
+    "Sorry, I can only answer questions about  Hyundai cars."`,
+
     messages,
-    tools
+    tools: cartools,
   });
 
   return result.toDataStreamResponse();

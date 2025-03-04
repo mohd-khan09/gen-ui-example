@@ -1,11 +1,11 @@
 "use client";
 
 import type { Message } from "ai";
-import Weather from "./weather";
+import Car from "./CarCard";
 
 export default function MessageComponent({
   message,
-  addToolResult
+  addToolResult,
 }: {
   message: Message;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,7 +13,7 @@ export default function MessageComponent({
 }) {
   return (
     <div
-      className={`flex gap-5 p-4 ${
+      className={`flex flex-col gap-5 p-4 ${
         message.role === "assistant" ? "bg-gray-900 rounded-lg" : ""
       }`}
     >
@@ -42,7 +42,7 @@ export default function MessageComponent({
                             onClick={() =>
                               addToolResult({
                                 toolCallId: callId,
-                                result: "Yes, confirmed."
+                                result: "Yes, confirmed.",
                               })
                             }
                           >
@@ -52,7 +52,7 @@ export default function MessageComponent({
                             onClick={() =>
                               addToolResult({
                                 toolCallId: callId,
-                                result: "No, denied"
+                                result: "No, denied",
                               })
                             }
                           >
@@ -85,7 +85,7 @@ export default function MessageComponent({
                 break;
               }
 
-              case "getWeatherInformation": {
+              case "getCarInformation": {
                 switch (part.toolInvocation.state) {
                   // example of pre-rendering streaming tool calls:
                   case "partial-call":
@@ -97,13 +97,13 @@ export default function MessageComponent({
                   case "call":
                     return (
                       <div key={callId}>
-                        Getting weather information for{" "}
+                        Getting car information for{" "}
                         {part.toolInvocation.args.city}...
                       </div>
                     );
                   case "result":
                     return (
-                      <Weather
+                      <Car
                         {...part.toolInvocation.result}
                         toolCallId={callId}
                         key={callId}
