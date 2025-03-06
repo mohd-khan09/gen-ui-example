@@ -7,20 +7,21 @@ export default function Home() {
   const { messages, input, handleInputChange, handleSubmit, addToolResult } =
     useChat({
       maxSteps: 5,
+
       // run client-side tools that are automatically executed:
       async onToolCall({ toolCall }) {
-        if (toolCall.toolName === "getLocation") {
-          const cities = [
-            "New York",
-            "Los Angeles",
-            "Chicago",
-            "San Francisco"
-          ];
-          return cities[Math.floor(Math.random() * cities.length)];
-        }
-      }
+        // if (toolCall.toolName === "getLocation") {
+        //   const cities = [
+        //     "New York",
+        //     "Los Angeles",
+        //     "Chicago",
+        //     "San Francisco",
+        //   ];
+        //   return cities[Math.floor(Math.random() * cities.length)];
+        // }
+      },
     });
-
+  console.log("messages--->>>", messages);
   return (
     <div className="flex flex-col h-screen max-w-6xl w-full mx-auto">
       <div className="flex-1 overflow-y-autoauto">

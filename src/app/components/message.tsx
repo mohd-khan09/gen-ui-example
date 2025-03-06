@@ -11,6 +11,7 @@ export default function MessageComponent({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   addToolResult: (toolResult: any) => void;
 }) {
+  console.log("message--->>>", message);
   return (
     <div
       className={`flex flex-col gap-5 p-4 ${
