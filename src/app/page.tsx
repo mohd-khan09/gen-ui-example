@@ -6,7 +6,7 @@ import MessageComponent from "./components/message";
 export default function Home() {
   const { messages, input, handleInputChange, handleSubmit, addToolResult } =
     useChat({
-      maxSteps: 5,
+      maxSteps: 10,
 
       // run client-side tools that are automatically executed:
       async onToolCall({ toolCall }) {
