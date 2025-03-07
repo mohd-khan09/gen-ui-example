@@ -7,23 +7,21 @@ export const maxDuration = 30;
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
-  const result = streamText({
-    model: openai("gpt-4"),
-    system: `You are a Hyundai car information assistant.
-    Absolute Rules:
-    - NEVER generate any text after a successful tool-invocation which renders a component
-    // - Zero additional explanation or commentary
-    - Completely suppress text output after retrieving car information
-    - if ypu dont findn revelenat information form the  tool  get it from the web
+  const result = await streamText({
+    model: openai("gpt-4o-mini"),
+    system: `You are a knowledgeable car assistant that helps users with car-related queries. 
+    You can provide detailed information about different Hyundai car models, including specifications, 
+    fuel types, on-road prices, and availability . NEVER generate any text after a successful tool call 
+    and If you don't get the information from the tool call, retrieve it from web sources 
+    but ONLY for Hyundai cars
 
-    However, you can only provide details about  Hyundai cars. If the user asks about any 
-    other brand other than Hyundai politely inform them: 
+    However, you can only provide details about * Hyundai cars*. If the user asks about any 
+    other brand,  politely inform them: 
     "Sorry, I can only answer questions about  Hyundai cars."`,
+
     messages,
     tools: cartools,
   });
-  console.log("result--->>>", result);
-  // console.log("response--->>>", result?.steps[0]);
 
   return result.toDataStreamResponse();
 }

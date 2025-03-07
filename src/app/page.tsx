@@ -6,7 +6,7 @@ import MessageComponent from "./components/message";
 export default function Home() {
   const { messages, input, handleInputChange, handleSubmit, addToolResult } =
     useChat({
-      maxSteps: 10,
+      maxSteps: 1,
 
       // run client-side tools that are automatically executed:
       async onToolCall({ toolCall }) {
@@ -21,7 +21,6 @@ export default function Home() {
         // }
       },
     });
-  console.log("messages--->>>", messages);
   return (
     <div className="flex flex-col h-screen max-w-6xl w-full mx-auto">
       <div className="flex-1 overflow-y-autoauto">
