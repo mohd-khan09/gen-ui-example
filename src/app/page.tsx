@@ -9,7 +9,7 @@ export default function Home() {
       maxSteps: 1,
 
       // run client-side tools that are automatically executed:
-      async onToolCall({ toolCall }) {
+      async onToolCall({}) {
         // if (toolCall.toolName === "getLocation") {
         //   const cities = [
         //     "New York",
