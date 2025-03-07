@@ -9,17 +9,17 @@ export default function Home() {
       maxSteps: 1,
 
       // run client-side tools that are automatically executed:
-      async onToolCall({}) {
-        // if (toolCall.toolName === "getLocation") {
-        //   const cities = [
-        //     "New York",
-        //     "Los Angeles",
-        //     "Chicago",
-        //     "San Francisco",
-        //   ];
-        //   return cities[Math.floor(Math.random() * cities.length)];
-        // }
-      },
+      // async onToolCall({}) {
+      // if (toolCall.toolName === "getLocation") {
+      //   const cities = [
+      //     "New York",
+      //     "Los Angeles",
+      //     "Chicago",
+      //     "San Francisco",
+      //   ];
+      //   return cities[Math.floor(Math.random() * cities.length)];
+      // }
+      // },
     });
   return (
     <div className="flex flex-col h-screen max-w-6xl w-full mx-auto">
